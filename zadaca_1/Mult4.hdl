@@ -1,0 +1,8 @@
+CHIP Mult4 {
+    IN in[16];
+    OUT out[16];
+
+    PARTS:
+    BitShiftL(in = in, out = in2);
+    BitShiftL(in = in2, out = out);
+}

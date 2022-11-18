@@ -1,0 +1,69 @@
+CHIP Mult {
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:	
+    Mux16(a = b[0], b = a, out = res1);
+    BitShiftL(in = a, out = bs1);
+
+    Mux16(a = b[1], b = bs1, out = res2);
+    BitShiftL(in = bs1, out = bs2);
+
+    Mux16(a = b[2], b = bs2, out = res3);
+    BitShiftL(in = bs2, out = bs3);
+
+    Mux16(a = b[3], b = bs3, out = res4);
+    BitShiftL(in = bs3, out = bs4);
+
+    Mux16(a = b[4], b = bs4, out = res5);
+    BitShiftL(in = bs4, out = bs5);
+
+    Mux16(a = b[5], b = bs5, out = res6);
+    BitShiftL(in = bs5, out = bs6);
+
+    Mux16(a = b[6], b = bs6, out = res7);
+    BitShiftL(in = bs6, out = bs7);
+
+    Mux16(a = b[7], b = bs7, out = res8);
+    BitShiftL(in = bs7, out = bs8);
+
+    Mux16(a = b[8], b = bs8, out = res9);
+    BitShiftL(in = bs8, out = bs9);
+
+    Mux16(a = b[9], b = bs9, out = res10);
+    BitShiftL(in = bs9, out = bs10);
+
+    Mux16(a = b[10], b = bs10, out = res11);
+    BitShiftL(in = bs10, out = bs11);
+
+    Mux16(a = b[11], b = bs11, out = res12);
+    BitShiftL(in = bs11, out = bs12);
+
+    Mux16(a = b[12], b = bs12, out = res13);
+    BitShiftL(in = bs12, out = bs13);
+
+    Mux16(a = b[13], b = bs13, out = res14);
+    BitShiftL(in = bs13, out = bs14);
+
+    Mux16(a = b[14], b = bs14, out = res15);
+    BitShiftL(in = bs14, out = bs15);
+
+    Mux16(a = b[15], b = bs15, out = res16);
+
+
+    Add16(a = res1, b = res2, out = end1);
+    Add16(a = end1, b = res3, out = end2);
+    Add16(a = end2, b = res4, out = end3);
+    Add16(a = end3, b = res5, out = end4);
+    Add16(a = end4, b = res6, out = end5);
+    Add16(a = end5, b = res7, out = end6);
+    Add16(a = end6, b = res8, out = end7);
+    Add16(a = end7, b = res9, out = end8);
+    Add16(a = end8, b = res10, out = end9);
+    Add16(a = end9, b = res11, out = end10);
+    Add16(a = end10, b = res12, out = end11);
+    Add16(a = end11, b = res13, out = end12);
+    Add16(a = end12, b = res14, out = end13);
+    Add16(a = end13, b = res15, out = end14);
+    Add16(a = end14, b = res16, out = out);
+}
