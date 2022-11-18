@@ -14,7 +14,7 @@ Proof.
    tauto.
 Qed.
 
-(* 2. a) *)
+(* 1. b) *)
 
 Goal forall (X Y Z : Prop), ~(~X /\ Y /\ ~Z) /\ ~(X /\ Y /\ Z) /\ (X /\ ~Y /\ ~Z) 
                             <-> (X /\ ~Y /\ ~Z).
