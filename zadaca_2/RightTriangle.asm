@@ -5,36 +5,44 @@ M=D
 
 @16
 D=A
+
 @j
 M=D
 
 @8
 D=A
+
 @R0
 M=D
 
 (Diagonal)
 @i
 D=M
+
 @2048
-D=A+D     //gornji offset
+D=A+D
+
 @10
-D=A+D     // lijevi offset
+D=A+D
+
 @R0
 D=M+D
 
 @SCREEN
 A=A+D
 M=1
+D=A
 
-D=A   // prep for bit shift
 @R5
 M=D
+
 @j
 D=M
+
 @R4
 M=D
-@MultSelf //bit shift
+
+@MultSelf
 0;JMP
 
 (Back1)
@@ -42,6 +50,7 @@ M=D
 @j
 M=M-1
 D=M
+
 @JZero
 D;JEQ
 
@@ -49,6 +58,7 @@ D;JEQ
 
 @32
 D=A
+
 @i
 M=M-D
 D=M
@@ -62,23 +72,29 @@ D;JEQ
 (JZero)
 @16
 D=A
+
 @j
 M=D
+
 @R0
 M=M-1
+
 @Back2
 0;JMP
 
-(MultSelf)  // r5 adresa mjesta, r4 iterator
+(MultSelf)
 @R4
 M=M-1
 D=M
+
 @Back1
 D;JEQ
+
 @R5
 A=M
 D=M
 M=D+M
+
 @MultSelf
 0;JMP
 
@@ -86,16 +102,19 @@ M=D+M
 (VerticalInit)
 @4096
 D=A
+
 @i
 M=D
 
 (Vertical)
 @i
 D=M
+
 @2048
-D=A+D     //gornji offset
+D=A+D
+
 @11
-D=A+D     // lijevi offset
+D=A+D
 
 @SCREEN
 A=A+D
@@ -103,37 +122,46 @@ M=M+1
 
 @32
 D=A
+
 @i
 M=M-D
 D=M
+
 @Vertical
 D;JGT
 
 @2091
 D=A
+
 @SCREEN
 A=A+D
 M=M-1
 
 @8
 D=A
+
 @i
 M=D
 
 (Horizontal)
 @i
 D=M
+
 @6144
-D=A+D     //gornji offset
+D=A+D
+
 @10
-D=A+D     // lijevi offset
+D=A+D
+
 @SCREEN
 A=A+D
 M=0
 M=!M
+
 @i
 M=M-1
 D=M
+
 @Horizontal
 D;JGT
 
