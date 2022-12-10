@@ -1,0 +1,7 @@
+CHIP BitShiftL {
+    IN in[16];
+    OUT out[16];
+
+    PARTS:
+    And16(a[0..15] = true, b[1..15] = in[0..14], b[0] = false, out = out);
+}
