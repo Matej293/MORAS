@@ -1,0 +1,64 @@
+function bsearch 3
+    push constant 0
+    pop local 0
+
+    push argument 1
+    push constant 1
+    sub
+    pop local 1 
+
+label while_loop
+    push local 0 
+    push local 1 
+    gt
+    if-goto end
+        push local 0
+        push local 1 
+        add
+        push constant 2 
+        call divmod.div 2
+        pop local 2
+        
+        push local 2 
+        push argument 0
+        add
+        pop pointer 1
+        push that 0
+        push argument 2
+        eq
+    if-goto found
+        push local 2 
+        push argument 0
+        add
+        pop pointer 1
+        push that 0
+        push argument 2
+        gt
+    if-goto higher
+        goto lower
+
+
+label end
+    push constant 1 
+    neg
+    return
+
+label found
+    push local 2 
+    push argument 0
+    add
+    return
+
+label higher
+    push local 2
+    push constant 1 
+    sub 
+    pop local 1
+    goto while_loop 
+
+label lower
+    push local 2
+    push constant 1 
+    add 
+    pop local 0
+    goto while_loop

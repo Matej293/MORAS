@@ -1,0 +1,50 @@
+function div 2
+    push constant 0
+    pop local 0
+    push argument 0
+    pop local 1 
+
+label while_loop 
+    push local 1 
+    push argument 1
+    lt
+    if-goto end
+        push local 0
+        push constant 1 
+        add
+        pop local 0
+        push local 1
+        push argument 1
+        sub
+        pop local 1
+        goto while_loop
+
+label end
+    push local 0
+    return
+
+
+function mod 2
+    push constant 0
+    pop local 0
+    push argument 0
+    pop local 1 
+
+label while_loop2 
+    push local 1 
+    push argument 1
+    lt
+    if-goto end2
+        push local 0
+        push constant 1 
+        add
+        pop local 0
+        push local 1
+        push argument 1
+        sub
+        pop local 1
+        goto while_loop2
+
+label end2
+    push local 1
+    return
