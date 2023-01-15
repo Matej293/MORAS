@@ -44,9 +44,7 @@ label end
     return
 
 label found
-    push local 2 
-    push argument 0
-    add
+    push local 2
     return
 
 label higher

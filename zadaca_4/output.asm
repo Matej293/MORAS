@@ -126,9 +126,16 @@ M=D
 @mid.mid
 0;JMP
 (mid.mid$ret1)
-// 	push constant 10
+// 	pop static 1
 
-@10
+@SP
+AM=M-1
+D=M
+@main.1
+M=D
+// 	push constant 7
+
+@7
 D=A
 @SP
 M=M+1
@@ -179,6 +186,13 @@ M=D
 @fibonacci.fibonacci
 0;JMP
 (fibonacci.fibonacci$ret2)
+// 	pop static 2
+
+@SP
+AM=M-1
+D=M
+@main.2
+M=D
 //     push constant 10
 
 @10
@@ -240,6 +254,13 @@ M=D
 @divmod.div
 0;JMP
 (divmod.div$ret3)
+//     pop static 3
+
+@SP
+AM=M-1
+D=M
+@main.3
+M=D
 //     push constant 10
 
 @10
@@ -301,25 +322,201 @@ M=D
 @divmod.mod
 0;JMP
 (divmod.mod$ret4)
-// 	push constant 10
+//     pop static 4
 
-@10
+@SP
+AM=M-1
+D=M
+@main.4
+M=D
+// 	push constant 100  // A = [2, 3, 4, 6, 7, 8, 9] at addr 100
+
+@100
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 10
+// 	pop pointer 1
 
-@10
+@SP
+AM=M-1
+D=M
+@4
+M=D
+// 	push constant 2
+
+@2
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 11
+// 	pop that 0
 
-@11
+@0
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 3
+
+@3
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 1
+
+@1
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 4
+
+@4
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 2
+
+@2
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 6
+
+@6
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 3
+
+@3
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 7
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 4
+
+@4
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 8
+
+@8
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 5
+
+@5
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 9
+
+@9
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 6
+
+@6
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 100  // addr 100
+
+@100
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 7  // len(A)
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 4  // x
+
+@4
 D=A
 @SP
 M=M+1
@@ -370,6 +567,59 @@ M=D
 @bsearch.bsearch
 0;JMP
 (bsearch.bsearch$ret5)
+// 	pop static 5
+
+@SP
+AM=M-1
+D=M
+@main.5
+M=D
+// 	return
+
+@LCL
+D=M
+@R15
+M=D
+@5
+D=A
+@R15
+A=M-D
+D=M
+@R14
+M=D
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
+@ARG
+D=M+1
+@SP
+M=D
+@R15
+AM=M-1
+D=M
+@THAT
+M=D
+@R15
+AM=M-1
+D=M
+@THIS
+M=D
+@R15
+AM=M-1
+D=M
+@ARG
+M=D
+@R15
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP
 // label END
 
 (main.main$END)
@@ -505,9 +755,16 @@ M=D
 @mid.mid
 0;JMP
 (mid.mid$ret7)
-// 	push constant 10
+// 	pop static 1
 
-@10
+@SP
+AM=M-1
+D=M
+@mid.1
+M=D
+// 	push constant 7
+
+@7
 D=A
 @SP
 M=M+1
@@ -558,6 +815,13 @@ M=D
 @fibonacci.fibonacci
 0;JMP
 (fibonacci.fibonacci$ret8)
+// 	pop static 2
+
+@SP
+AM=M-1
+D=M
+@mid.2
+M=D
 //     push constant 10
 
 @10
@@ -619,6 +883,13 @@ M=D
 @divmod.div
 0;JMP
 (divmod.div$ret9)
+//     pop static 3
+
+@SP
+AM=M-1
+D=M
+@mid.3
+M=D
 //     push constant 10
 
 @10
@@ -680,25 +951,201 @@ M=D
 @divmod.mod
 0;JMP
 (divmod.mod$ret10)
-// 	push constant 10
+//     pop static 4
 
-@10
+@SP
+AM=M-1
+D=M
+@mid.4
+M=D
+// 	push constant 100  // A = [2, 3, 4, 6, 7, 8, 9] at addr 100
+
+@100
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 10
+// 	pop pointer 1
 
-@10
+@SP
+AM=M-1
+D=M
+@4
+M=D
+// 	push constant 2
+
+@2
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 11
+// 	pop that 0
 
-@11
+@0
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 3
+
+@3
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 1
+
+@1
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 4
+
+@4
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 2
+
+@2
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 6
+
+@6
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 3
+
+@3
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 7
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 4
+
+@4
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 8
+
+@8
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 5
+
+@5
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 9
+
+@9
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 6
+
+@6
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 100  // addr 100
+
+@100
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 7  // len(A)
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 4  // x
+
+@4
 D=A
 @SP
 M=M+1
@@ -749,6 +1196,59 @@ M=D
 @bsearch.bsearch
 0;JMP
 (bsearch.bsearch$ret11)
+// 	pop static 5
+
+@SP
+AM=M-1
+D=M
+@mid.5
+M=D
+// 	return
+
+@LCL
+D=M
+@R15
+M=D
+@5
+D=A
+@R15
+A=M-D
+D=M
+@R14
+M=D
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
+@ARG
+D=M+1
+@SP
+M=D
+@R15
+AM=M-1
+D=M
+@THAT
+M=D
+@R15
+AM=M-1
+D=M
+@THIS
+M=D
+@R15
+AM=M-1
+D=M
+@ARG
+M=D
+@R15
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP
 // label END
 
 (mid.main$END)
@@ -1486,9 +1986,16 @@ M=D
 @mid.mid
 0;JMP
 (mid.mid$ret23)
-// 	push constant 10
+// 	pop static 1
 
-@10
+@SP
+AM=M-1
+D=M
+@fibonacci.1
+M=D
+// 	push constant 7
+
+@7
 D=A
 @SP
 M=M+1
@@ -1539,6 +2046,13 @@ M=D
 @fibonacci.fibonacci
 0;JMP
 (fibonacci.fibonacci$ret24)
+// 	pop static 2
+
+@SP
+AM=M-1
+D=M
+@fibonacci.2
+M=D
 //     push constant 10
 
 @10
@@ -1600,6 +2114,13 @@ M=D
 @divmod.div
 0;JMP
 (divmod.div$ret25)
+//     pop static 3
+
+@SP
+AM=M-1
+D=M
+@fibonacci.3
+M=D
 //     push constant 10
 
 @10
@@ -1661,25 +2182,201 @@ M=D
 @divmod.mod
 0;JMP
 (divmod.mod$ret26)
-// 	push constant 10
+//     pop static 4
 
-@10
+@SP
+AM=M-1
+D=M
+@fibonacci.4
+M=D
+// 	push constant 100  // A = [2, 3, 4, 6, 7, 8, 9] at addr 100
+
+@100
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 10
+// 	pop pointer 1
 
-@10
+@SP
+AM=M-1
+D=M
+@4
+M=D
+// 	push constant 2
+
+@2
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 11
+// 	pop that 0
 
-@11
+@0
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 3
+
+@3
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 1
+
+@1
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 4
+
+@4
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 2
+
+@2
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 6
+
+@6
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 3
+
+@3
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 7
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 4
+
+@4
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 8
+
+@8
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 5
+
+@5
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 9
+
+@9
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 6
+
+@6
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 100  // addr 100
+
+@100
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 7  // len(A)
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 4  // x
+
+@4
 D=A
 @SP
 M=M+1
@@ -1730,6 +2427,59 @@ M=D
 @bsearch.bsearch
 0;JMP
 (bsearch.bsearch$ret27)
+// 	pop static 5
+
+@SP
+AM=M-1
+D=M
+@fibonacci.5
+M=D
+// 	return
+
+@LCL
+D=M
+@R15
+M=D
+@5
+D=A
+@R15
+A=M-D
+D=M
+@R14
+M=D
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
+@ARG
+D=M+1
+@SP
+M=D
+@R15
+AM=M-1
+D=M
+@THAT
+M=D
+@R15
+AM=M-1
+D=M
+@THIS
+M=D
+@R15
+AM=M-1
+D=M
+@ARG
+M=D
+@R15
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP
 // label END
 
 (fibonacci.main$END)
@@ -2772,9 +3522,16 @@ M=D
 @mid.mid
 0;JMP
 (mid.mid$ret43)
-// 	push constant 10
+// 	pop static 1
 
-@10
+@SP
+AM=M-1
+D=M
+@divmod.1
+M=D
+// 	push constant 7
+
+@7
 D=A
 @SP
 M=M+1
@@ -2825,6 +3582,13 @@ M=D
 @fibonacci.fibonacci
 0;JMP
 (fibonacci.fibonacci$ret44)
+// 	pop static 2
+
+@SP
+AM=M-1
+D=M
+@divmod.2
+M=D
 //     push constant 10
 
 @10
@@ -2886,6 +3650,13 @@ M=D
 @divmod.div
 0;JMP
 (divmod.div$ret45)
+//     pop static 3
+
+@SP
+AM=M-1
+D=M
+@divmod.3
+M=D
 //     push constant 10
 
 @10
@@ -2947,25 +3718,201 @@ M=D
 @divmod.mod
 0;JMP
 (divmod.mod$ret46)
-// 	push constant 10
+//     pop static 4
 
-@10
+@SP
+AM=M-1
+D=M
+@divmod.4
+M=D
+// 	push constant 100  // A = [2, 3, 4, 6, 7, 8, 9] at addr 100
+
+@100
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 10
+// 	pop pointer 1
 
-@10
+@SP
+AM=M-1
+D=M
+@4
+M=D
+// 	push constant 2
+
+@2
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 11
+// 	pop that 0
 
-@11
+@0
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 3
+
+@3
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 1
+
+@1
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 4
+
+@4
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 2
+
+@2
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 6
+
+@6
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 3
+
+@3
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 7
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 4
+
+@4
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 8
+
+@8
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 5
+
+@5
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 9
+
+@9
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 6
+
+@6
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 100  // addr 100
+
+@100
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 7  // len(A)
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 4  // x
+
+@4
 D=A
 @SP
 M=M+1
@@ -3016,6 +3963,59 @@ M=D
 @bsearch.bsearch
 0;JMP
 (bsearch.bsearch$ret47)
+// 	pop static 5
+
+@SP
+AM=M-1
+D=M
+@divmod.5
+M=D
+// 	return
+
+@LCL
+D=M
+@R15
+M=D
+@5
+D=A
+@R15
+A=M-D
+D=M
+@R14
+M=D
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
+@ARG
+D=M+1
+@SP
+M=D
+@R15
+AM=M-1
+D=M
+@THAT
+M=D
+@R15
+AM=M-1
+D=M
+@THIS
+M=D
+@R15
+AM=M-1
+D=M
+@ARG
+M=D
+@R15
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP
 // label END
 
 (divmod.main$END)
@@ -4566,9 +5566,16 @@ M=D
 @mid.mid
 0;JMP
 (mid.mid$ret67)
-// 	push constant 10
+// 	pop static 1
 
-@10
+@SP
+AM=M-1
+D=M
+@bsearch.1
+M=D
+// 	push constant 7
+
+@7
 D=A
 @SP
 M=M+1
@@ -4619,6 +5626,13 @@ M=D
 @fibonacci.fibonacci
 0;JMP
 (fibonacci.fibonacci$ret68)
+// 	pop static 2
+
+@SP
+AM=M-1
+D=M
+@bsearch.2
+M=D
 //     push constant 10
 
 @10
@@ -4680,6 +5694,13 @@ M=D
 @divmod.div
 0;JMP
 (divmod.div$ret69)
+//     pop static 3
+
+@SP
+AM=M-1
+D=M
+@bsearch.3
+M=D
 //     push constant 10
 
 @10
@@ -4741,25 +5762,201 @@ M=D
 @divmod.mod
 0;JMP
 (divmod.mod$ret70)
-// 	push constant 10
+//     pop static 4
 
-@10
+@SP
+AM=M-1
+D=M
+@bsearch.4
+M=D
+// 	push constant 100  // A = [2, 3, 4, 6, 7, 8, 9] at addr 100
+
+@100
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 10
+// 	pop pointer 1
 
-@10
+@SP
+AM=M-1
+D=M
+@4
+M=D
+// 	push constant 2
+
+@2
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-// 	push constant 11
+// 	pop that 0
 
-@11
+@0
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 3
+
+@3
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 1
+
+@1
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 4
+
+@4
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 2
+
+@2
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 6
+
+@6
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 3
+
+@3
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 7
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 4
+
+@4
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 8
+
+@8
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 5
+
+@5
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 9
+
+@9
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	pop that 6
+
+@6
+D=A
+@THAT
+D=D+M
+@R15
+M=D
+@SP
+AM=M-1
+D=M
+@R15
+A=M
+M=D
+// 	push constant 100  // addr 100
+
+@100
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 7  // len(A)
+
+@7
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+// 	push constant 4  // x
+
+@4
 D=A
 @SP
 M=M+1
@@ -4810,6 +6007,59 @@ M=D
 @bsearch.bsearch
 0;JMP
 (bsearch.bsearch$ret71)
+// 	pop static 5
+
+@SP
+AM=M-1
+D=M
+@bsearch.5
+M=D
+// 	return
+
+@LCL
+D=M
+@R15
+M=D
+@5
+D=A
+@R15
+A=M-D
+D=M
+@R14
+M=D
+@SP
+AM=M-1
+D=M
+@ARG
+A=M
+M=D
+@ARG
+D=M+1
+@SP
+M=D
+@R15
+AM=M-1
+D=M
+@THAT
+M=D
+@R15
+AM=M-1
+D=M
+@THIS
+M=D
+@R15
+AM=M-1
+D=M
+@ARG
+M=D
+@R15
+AM=M-1
+D=M
+@LCL
+M=D
+@R14
+A=M
+0;JMP
 // label END
 
 (bsearch.main$END)
@@ -6687,7 +7937,7 @@ A=M
 // label found
 
 (bsearch.bsearch$found)
-//     push local 2 
+//     push local 2
 
 @2
 D=A
