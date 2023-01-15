@@ -7,21 +7,21 @@ function main 0
     push constant 10
     push constant 15
 	call mid.mid 3
-	pop static 1
+	pop static 0
 
 	push constant 7
 	call fibonacci.fibonacci 1
-	pop static 2
+	pop static 1
 
     push constant 10
     push constant 8
     call divmod.div 2
-    pop static 3
+    pop static 2
 
     push constant 10
     push constant 8
     call divmod.mod 2
-    pop static 4
+    pop static 3
 
 	push constant 100  // A = [2, 3, 4, 6, 7, 8, 9] at addr 100
 	pop pointer 1
@@ -43,7 +43,7 @@ function main 0
 	push constant 7  // len(A)
 	push constant 4  // x
 	call bsearch.bsearch 3  // returns 2
-	pop static 5
+	pop static 4
 	return
 
 label END
