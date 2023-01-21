@@ -1,0 +1,64 @@
+class Main
+{
+
+    function void main() {
+		var Vint vector_A, vector_B;
+        var int i;
+        let vector_A = Vint.new(3);
+        let vector_B = Vint.new(2);
+		
+		do Output.printString("A len: ");
+        do Output.printInt(vector_A.len());
+        do Output.println();
+        
+        do vector_A.set(0,1);
+        do vector_A.set(1,2);
+        do vector_A.set(-1,3);
+        do vector_A.set(5,4);
+        do vector_B.set(1,6);
+        do vector_B.set(2,5);
+        
+        do Output.printInt(vector_B.get(5));
+        do Output.println();
+        do Output.printInt(vector_A.get(0));
+        do Output.println();
+        
+        do vector_B.resize(3);
+        
+        if (Vint.elems(vector_A, vector_B) = true) {
+            do Output.printString("A == B");
+            do Output.println();
+        }
+        
+		do Output.printString("A: ");
+        while (i < vector_A.len()) {
+            do Output.printInt(vector_A.get(i));
+            do Output.printString(" ");
+            let i = i + 1;
+        }
+        
+        let i = 0;
+        do Output.println();
+		do Output.printString("B: ");
+        while (i < vector_B.len()) {
+            do Output.printInt(vector_B.get(i));
+            do Output.printString(" ");
+            let i = i + 1;
+        }
+        
+        do Output.println();
+        
+        if (Vint.is_eq(vector_A, vector_B) = false) {
+            do Output.printString("A != B");
+            do Output.println();
+        }
+        
+        if (Vint.is_eq(vector_A, vector_A) = true) {
+            do Output.printString("A = A");
+            do Output.println();
+        }
+
+        return;
+    }
+
+}
