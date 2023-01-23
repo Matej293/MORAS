@@ -1,0 +1,237 @@
+function Main.main 3
+push constant 3
+call Vint.new 1
+pop local 0
+push constant 2
+call Vint.new 1
+pop local 1
+push constant 7
+call String.new 1
+push constant 65
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push local 0
+call Vint.len 1
+call Output.printInt 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push local 0
+push constant 0
+push constant 1
+call Vint.set 3
+pop temp 0
+push local 0
+push constant 1
+push constant 2
+call Vint.set 3
+pop temp 0
+push local 0
+push constant 1
+neg
+push constant 3
+call Vint.set 3
+pop temp 0
+push local 0
+push constant 5
+push constant 4
+call Vint.set 3
+pop temp 0
+push local 1
+push constant 1
+push constant 6
+call Vint.set 3
+pop temp 0
+push local 1
+push constant 2
+push constant 5
+call Vint.set 3
+pop temp 0
+push local 1
+push constant 5
+call Vint.get 2
+call Output.printInt 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push local 0
+push constant 0
+call Vint.get 2
+call Output.printInt 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push local 1
+push constant 3
+call Vint.resize 2
+pop temp 0
+push local 0
+push local 1
+call Vint.elems 2
+push constant 0
+not
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 6
+call String.new 1
+push constant 65
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 61
+call String.appendChar 2
+push constant 61
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+call Output.println 0
+pop temp 0
+label IF_FALSE0
+push constant 3
+call String.new 1
+push constant 65
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label WHILE_EXP0
+push local 2
+push local 0
+call Vint.len 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 2
+call Vint.get 2
+call Output.printInt 1
+pop temp 0
+push constant 1
+call String.new 1
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+pop local 2
+call Output.println 0
+pop temp 0
+push constant 3
+call String.new 1
+push constant 66
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label WHILE_EXP1
+push local 2
+push local 1
+call Vint.len 1
+lt
+not
+if-goto WHILE_END1
+push local 1
+push local 2
+call Vint.get 2
+call Output.printInt 1
+pop temp 0
+push constant 1
+call String.new 1
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+call Output.println 0
+pop temp 0
+push local 0
+push local 1
+call Vint.is_eq 2
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 6
+call String.new 1
+push constant 65
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+push constant 61
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+call Output.println 0
+pop temp 0
+label IF_FALSE1
+push local 0
+push local 0
+call Vint.is_eq 2
+push constant 0
+not
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 5
+call String.new 1
+push constant 65
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 61
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+call Output.println 0
+pop temp 0
+label IF_FALSE2
+push constant 0
+return
