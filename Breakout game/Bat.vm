@@ -1,0 +1,194 @@
+function Bat.new 0
+push constant 5
+call Memory.alloc 1
+pop pointer 0
+push constant 90
+push constant 15
+push argument 2
+call Math.multiply 2
+sub
+pop this 2
+push constant 10
+pop this 3
+push constant 2
+push argument 2
+add
+pop this 4
+push argument 0
+push this 2
+sub
+pop this 0
+push argument 1
+push this 3
+sub
+pop this 1
+push pointer 0
+return
+function Bat.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Bat.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Bat.drawBat 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Bat.moveRight 0
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+add
+push constant 511
+push this 4
+sub
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push this 0
+push this 4
+add
+pop this 0
+push constant 0
+return
+function Bat.moveLeft 0
+push argument 0
+pop pointer 0
+push this 0
+push this 4
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push this 0
+push this 4
+sub
+pop this 0
+push constant 0
+return
+function Bat.batCollisionCheck 6
+push argument 0
+pop pointer 0
+push argument 1
+call Ball.getX 1
+pop local 0
+push argument 1
+call Ball.getY 1
+pop local 1
+push argument 1
+call Ball.getRadius 1
+pop local 2
+push this 2
+push constant 5
+call Math.divide 2
+pop local 5
+push local 1
+push local 2
+add
+push this 4
+push constant 2
+sub
+add
+push pointer 0
+call Bat.getY 1
+lt
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push local 2
+sub
+push pointer 0
+call Bat.getX 1
+gt
+push local 0
+push pointer 0
+call Bat.getX 1
+push this 2
+add
+lt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push this 0
+push constant 2
+push local 5
+call Math.multiply 2
+add
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 1
+push constant 1
+call Ball.collideWithBat 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE2
+push local 0
+push this 0
+push constant 3
+push local 5
+call Math.multiply 2
+add
+lt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push argument 1
+push constant 2
+call Ball.collideWithBat 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE3
+push local 0
+push this 0
+push this 2
+add
+lt
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push argument 1
+push constant 3
+call Ball.collideWithBat 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE4
+label IF_FALSE1
+label IF_FALSE0
+push constant 0
+return

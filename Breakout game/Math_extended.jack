@@ -1,0 +1,7 @@
+class Math_extended {
+    function int mod(int x, int y) {
+        var int q;
+        let q = Math.divide(x, y);
+        return x - (q * y);
+    }
+}

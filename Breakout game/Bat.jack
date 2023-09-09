@@ -1,0 +1,77 @@
+class Bat{
+	field int x, y, length, height, batSpeed;
+	
+	constructor Bat new (int xPos, int yPos, int diff){
+		let length = (90 - (15*diff));  //bat length depends on the difficulty
+		let height = 10;
+		let batSpeed = 2 + diff;  //bat speed depends on the difficulty
+
+		let x = (xPos - length);
+		let y = (yPos - height);
+		return this;
+	}
+	
+	method int getX(){
+		return x;
+	}
+	
+	method int getY(){
+		return y;
+	}
+
+	method void drawBat(){
+		do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x + length, y + height);
+		return;
+	}
+
+	method void moveRight(){  
+		if((x + length) > (511 - batSpeed)){
+			return;
+		}
+		let x = x + batSpeed;
+		return;
+	}
+	
+	method void moveLeft(){
+		if(x < batSpeed){
+			return;
+		}
+		let x = x - batSpeed;
+		return;
+	}
+	
+	method void batCollisionCheck(Ball ball){
+		var int ballX, ballY, ballRadius, batX, batY, fifth;
+		
+		let ballX = ball.getX();
+		let ballY = ball.getY();
+
+		let ballRadius = ball.getRadius();
+		
+		let fifth = (length / 5);
+		
+		if(~(((ballY + ballRadius) + (batSpeed - 2)) < getY())){ //batspeed - 2 = difficulty - withtout making another var
+
+			if((((ballX - ballRadius)) > getX()) & (ballX < (getX() + length))){
+
+				if(ballX < (x + (2*fifth))){
+					do ball.collideWithBat(1);
+					return;
+				}
+
+				if(ballX < (x + (3*fifth))){
+					do ball.collideWithBat(2);
+					return;
+				}
+
+				if(ballX < (x + length)){
+					do ball.collideWithBat(3);
+					return;
+				}
+			}
+		}
+
+		return;
+	}
+}

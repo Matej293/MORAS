@@ -1,0 +1,92 @@
+class Ball{
+	field int x, y, radius, vx, vy, difficulty;
+
+	constructor Ball new (int xArg, int yArg, int diff){
+		let radius = 5;
+		let vx = diff;
+		let vy = diff;
+		let difficulty = diff;
+		let x = xArg;
+		let y = yArg;
+
+		return this;
+	}
+	
+	method int getX(){
+		return x;
+	}
+
+	method int getY(){
+		return y;
+	}
+
+	method int getvx(){
+		return vx;
+	}
+	method int getvy(){
+		return vy;
+	}
+	
+	method int getRadius(){
+		return radius;
+	}
+
+	method void drawBall(){
+		do Screen.drawCircle(x, y, radius);
+		return;
+	}
+	
+	method boolean gameOver(){
+		if(((y + radius) + vy) > 256){
+			return true;
+		}
+		return false;
+	}
+	
+	method void ballMove(){
+		
+		if(y - (radius*2) < 0){
+			let vy = -vy;
+		}
+		
+		//Collide with left or right side
+		if(((x - radius) < 2) | ((x + (2*radius)) > 511)){
+			let vx = -vx;
+		}
+		
+		//normal movement
+		let x = x + vx;
+		let y = y + vy;
+		
+		return;
+	}
+	
+	//section 1 = left side of the bat
+	//section 2 = the middle of the bat
+	//section 3 = right side of the bat
+	method void collideWithBat(int section){
+		let vy = -vy;
+
+		if((section = 1)){
+			let vx = -difficulty;
+		}
+		if(section = 2){
+			let vx = 0;
+		}
+		if(section = 3){
+			let vx = difficulty;
+		}
+		return;
+	}
+
+	method void sideReflect(){
+		let vx = -vx;
+		return;
+	}
+
+	method void verticalReflect(){
+		let vy = -vy;
+		return;
+	}
+
+}

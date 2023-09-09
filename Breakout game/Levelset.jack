@@ -1,0 +1,77 @@
+class Levelset{
+	field int currentIndex;
+	field Array level;
+	field Game game;
+	
+	constructor Levelset new(Game gameArg){
+		let game = gameArg;
+		let currentIndex = 0;
+
+		do initLevels();
+		return this;
+	}
+	
+	method void initLevels(){
+		var int i, brickX, brickY, allIndex, brickNumber;
+
+		let level = Array.new((24 + 3)); //array size = number of bricks in all levels + numbers of levels
+
+		let allIndex = 0;
+		
+		//level 1
+		let i = 0;
+		let brickNumber = 10;
+		let level[allIndex] = brickNumber;
+		let allIndex = allIndex + 1;
+		while(i < brickNumber){
+			let brickX = 125 + (54*Math_extended.mod(i, 5));
+			let brickY = 80 + ((Math.divide(i, 5) + 1) * 22);
+			let level[allIndex] = Block.new(brickX, brickY, game);
+			let i = i + 1;
+			let allIndex = allIndex + 1;
+		}
+
+		//level 2
+		let i = 0;
+		let brickNumber = 14;
+		let level[allIndex] = brickNumber;
+		let allIndex = allIndex + 1;
+		while(i < brickNumber){
+			let brickX = 60 + (54*Math_extended.mod(i, 7));
+			let brickY = 30 + ((Math.divide(i, 7) + 1) * 22);
+			let level[allIndex] = Block.new(brickX, brickY, game);
+			let i = i + 1;
+			let allIndex = allIndex + 1;
+		}
+		
+		return;
+	}
+	
+	method Array getNewLevel(){
+		var int i, brickNumber;
+		var Array currentLevel;
+		var Block currentBlock;
+
+		let brickNumber = level[currentIndex];
+		let currentIndex = currentIndex + 1;
+
+		let currentLevel = Array.new(brickNumber + 1);
+		let currentLevel[0] = brickNumber;
+
+		let i = 0;
+		while(i < brickNumber){
+			let currentBlock = level[currentIndex];
+			do currentBlock.enable();
+			let currentLevel[i + 1] = currentBlock;
+			let i = i + 1;
+			let currentIndex = currentIndex + 1;
+		}
+		return currentLevel;
+	}
+
+	method Array getFirstLevel(){
+		let currentIndex = 0;
+		return getNewLevel();
+	}
+
+}

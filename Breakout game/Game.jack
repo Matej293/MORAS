@@ -1,0 +1,218 @@
+class Game{
+	field int score, difficulty, speed, brickNumber, remainingBlocks;
+	field String scoreDisplay, difficultyDisplay;
+
+	field Bat bat;
+	field Ball ball;
+	field Array currentLevel;
+	field Levelset levelset;
+
+	field boolean exit;
+	
+	constructor Game new(int diff) {
+		let speed = 12;  //overall game speed scalar
+		let difficulty = diff;
+
+		let scoreDisplay = "Points: ";
+		let difficultyDisplay = "Difficulty: ";
+
+		let levelset = Levelset.new(this);
+
+		do initGame(diff);
+		return this;
+	}
+
+	method void initGame(int diff){
+		var Array levelData;
+
+		let bat = Bat.new(256, 255, diff);
+		let ball = Ball.new(200, 200, diff);
+		let score = 0;
+		let difficulty = diff;
+		let exit = false;
+
+		let levelData = levelset.getFirstLevel();
+		do loadLevel(levelData);
+		return;
+	}
+
+	method void loadLevel(Array levelData){
+		var int i;
+		let brickNumber = levelData[0];
+		let remainingBlocks = levelData[0];
+		let currentLevel = Array.new(brickNumber);
+		
+		let i = 0;
+		while(i < brickNumber){
+			let currentLevel[i] = levelData[(i + 1)];
+			let i = i + 1;
+		}
+		do levelData.dispose();
+
+		return;
+	}
+	
+	method void run(){
+		var int i, steps;
+		var char input;
+		
+		let i = -1;
+		while(~exit){
+			let steps = Math.divide(36, speed); //steps handle the amount of drawObject calls
+
+			do calculateLogic();
+
+			//time-tick handling
+			if(i = steps){
+				do drawObjects();
+				let i = -1;
+			}
+			let i = i + 1;
+
+			let input = Keyboard.keyPressed();
+			if(input = 140){ //ESC
+				let exit = true;
+				do Sys.wait(300);
+				do gameOver();
+			}
+			if(input = 130){
+				do bat.moveLeft();
+			}
+			if(input = 132){
+				do bat.moveRight();
+			}
+			if(input = 43){ //Plus
+				do skipLevel();
+				do Sys.wait(300);
+			}
+			do Sys.wait(speed);
+		}
+		return;
+	}
+	
+	method void gameOver(){
+		var char input;
+		var int difficulty;
+
+		do Screen.clearScreen();
+		do Output.moveCursor(2,28);
+		if(score = 24){
+			do Output.printString(" You won!");
+		}else{
+			do Output.printString("Game over");
+		}
+
+		do Output.moveCursor(10,24);
+		do Output.printString("Your score is: ");
+		do Output.printInt(score);
+		do Output.printString("!");
+
+		do Output.moveCursor(20,3);
+		do Output.printString("Restart? Select new difficulty by holding [1], [2] or [3]!");
+		do Output.moveCursor(21,18);
+		do Output.printString("Press [ESC] to exit the game!");
+		let input = Keyboard.keyPressed();
+		while(~((input = 49) | (input = 50) | (input = 51) | (input = 140))){
+			let input = Keyboard.keyPressed();
+			do Sys.wait(10);
+		}
+
+		if(input = 49){
+			let difficulty = 1;
+		}
+		if(input = 50){
+			let difficulty = 2;
+		}
+		if(input = 51){
+			let difficulty = 3;
+		}
+
+		if((input = 49) | (input = 50) | (input = 51)){
+			do initGame(difficulty);
+			do run();
+		}else{
+			if(input = 140){
+				do Sys.halt();
+			}
+		}
+		return;
+	}
+
+	method void drawObjects(){
+		var int i;
+		var Block temp;
+		
+		do Screen.clearScreen();
+
+		do Output.moveCursor(0, 0);
+		do Output.printString(scoreDisplay);
+		do Output.printInt(score);
+
+		do Output.moveCursor(1, 0);
+		do Output.printString(difficultyDisplay);
+		do Output.printInt(difficulty);
+
+		do bat.drawBat();
+		
+		do ball.drawBall();
+		
+		let i = 0;
+		while(i < brickNumber){
+			let temp = currentLevel[i];
+			do temp.drawBlock();
+			let i = i + 1;
+		}
+		return;
+	}
+	
+	method void calculateLogic(){
+		var int i;
+		var Block temp;
+		
+		do bat.batCollisionCheck(ball);
+		
+		do ball.ballMove();
+		
+		if(ball.gameOver()){
+			do gameOver();
+		}
+		
+		let i = 0;
+		while(i < brickNumber){
+			let temp = currentLevel[i];
+			if(temp.doCollisionCheck(ball)){
+				return;
+			}
+			let i = i + 1;
+		}
+		return;
+	}
+	
+	//if the score reaches 24 (the max number of bricks in both levels) the game ends
+	method void increaseScore(){	
+		var Array levelData;
+		let score = score + 1;
+		let remainingBlocks = remainingBlocks - 1;
+		if(score = 24){
+			do gameOver();
+			return;
+		}
+		if(remainingBlocks = 0){		
+			let levelData = levelset.getNewLevel();
+			do loadLevel(levelData);
+		}
+		return;
+	}
+	
+	method void skipLevel(){
+		var Array levelData;
+		let levelData = levelset.getNewLevel();
+		do loadLevel(levelData);
+		return;
+	}
+
+	method boolean quitGame(){
+		return exit;
+	}
+
+}

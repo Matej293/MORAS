@@ -1,0 +1,72 @@
+class Block{
+	field int x, y, length, height;
+	field boolean isActive;
+	field Game game;
+	
+	constructor Block new (int xArg, int yArg, Game gameArg){
+		let x = xArg;
+		let y = yArg;
+		let game = gameArg;
+		let length = 50;
+		let height = 20;
+		let isActive = true;
+
+		return this;
+	}
+	
+	method int getX(){
+		return x;
+	}
+	
+	method int getY(){
+		return y;
+	}
+	
+	method void enable(){
+		let isActive = true;
+		return;
+	}
+
+	method void drawBlock(){
+		if(~isActive){
+			return;
+		}
+
+		do Screen.drawRectangle(x, y, x + length, y + height);
+		do Screen.setColor(false);
+		do Screen.drawRectangle(x + 2, y + 2, (x - 2) + length, (y - 2) + height);
+		do Screen.setColor(true);
+		return;
+	}
+
+	method boolean doCollisionCheck(Ball ball){
+		var int ballRadius, ballNextX, ballNextY, centerX, centerY;
+	
+		if(~isActive){
+			return false;
+		}
+	
+		let ballRadius = ball.getRadius();
+		let ballNextX = ball.getX() + ball.getvx();
+		let ballNextY = ball.getY() + ball.getvy();
+		
+		let centerX = x + (Math.divide(length, 2));
+		let centerY = y + (Math.divide(height, 2));
+
+
+		if(~((Math.abs(ballNextX - centerX) > (Math.divide(length, 2) + ballRadius)) | (Math.abs(ballNextY - centerY) > (Math.divide(height, 2) + ballRadius)))){
+			if(((ball.getX() + ballRadius) < x) | ((ball.getX() - ballRadius) > (x + length))){
+				do ball.sideReflect();
+			}else{
+				do ball.verticalReflect();
+			}
+
+			do game.increaseScore();
+			let isActive = false;
+			return true;
+		}
+
+		return false;
+	}
+
+}

@@ -1,0 +1,220 @@
+function Levelset.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 2
+push constant 0
+pop this 0
+push pointer 0
+call Levelset.initLevels 1
+pop temp 0
+push pointer 0
+return
+function Levelset.initLevels 5
+push argument 0
+pop pointer 0
+push constant 24
+push constant 3
+add
+call Array.new 1
+pop this 1
+push constant 0
+pop local 3
+push constant 0
+pop local 0
+push constant 10
+pop local 4
+push local 3
+push this 1
+add
+push local 4
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 3
+push constant 1
+add
+pop local 3
+label WHILE_EXP0
+push local 0
+push local 4
+lt
+not
+if-goto WHILE_END0
+push constant 125
+push constant 54
+push local 0
+push constant 5
+call Math_extended.mod 2
+call Math.multiply 2
+add
+pop local 1
+push constant 80
+push local 0
+push constant 5
+call Math.divide 2
+push constant 1
+add
+push constant 22
+call Math.multiply 2
+add
+pop local 2
+push local 3
+push this 1
+add
+push local 1
+push local 2
+push this 2
+call Block.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+pop local 0
+push constant 14
+pop local 4
+push local 3
+push this 1
+add
+push local 4
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 3
+push constant 1
+add
+pop local 3
+label WHILE_EXP1
+push local 0
+push local 4
+lt
+not
+if-goto WHILE_END1
+push constant 60
+push constant 54
+push local 0
+push constant 7
+call Math_extended.mod 2
+call Math.multiply 2
+add
+pop local 1
+push constant 30
+push local 0
+push constant 7
+call Math.divide 2
+push constant 1
+add
+push constant 22
+call Math.multiply 2
+add
+pop local 2
+push local 3
+push this 1
+add
+push local 1
+push local 2
+push this 2
+call Block.new 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+return
+function Levelset.getNewLevel 4
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+add
+pop pointer 1
+push that 0
+pop local 1
+push this 0
+push constant 1
+add
+pop this 0
+push local 1
+push constant 1
+add
+call Array.new 1
+pop local 2
+push constant 0
+push local 2
+add
+push local 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push local 1
+lt
+not
+if-goto WHILE_END0
+push this 0
+push this 1
+add
+pop pointer 1
+push that 0
+pop local 3
+push local 3
+call Block.enable 1
+pop temp 0
+push local 0
+push constant 1
+add
+push local 2
+add
+push local 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+push this 0
+push constant 1
+add
+pop this 0
+goto WHILE_EXP0
+label WHILE_END0
+push local 2
+return
+function Levelset.getFirstLevel 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 0
+push pointer 0
+call Levelset.getNewLevel 1
+return

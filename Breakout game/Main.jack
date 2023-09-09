@@ -1,0 +1,62 @@
+class Main {
+  function void main(){
+    var int key, difficulty;
+	var boolean showText;
+	var String title, tempString;
+	var Game game;
+
+	let showText = false;
+
+	do Output.moveCursor(2, 16);
+	let tempString = "Breakout Game by Matej Spajic";
+	do Output.printString(tempString);
+	do Output.moveCursor(11, 4);
+	let tempString = "Please select the difficulty by holding [1], [2] or [3]!";
+	do Output.printString(tempString);
+	do Output.moveCursor(20, 16);
+	let tempString = "1 - easy, 2 - normal, 3 - hard";
+	do Output.printString(tempString);
+	
+    let key = Keyboard.keyPressed();
+	
+	while(key = 0) {
+		do Output.moveCursor(11, 4);
+		if(showText){
+			let title = "Please select the difficulty by holding [1], [2] or [3]!";
+		}else{
+			let title = "                                                        ";	
+		}
+		
+		do Output.printString(title);
+		do title.dispose();
+
+		let showText = ~showText;
+
+		let key = Keyboard.keyPressed();
+
+		do Sys.wait(350);
+	}
+
+	if(key = 49){
+		let difficulty = 1;
+	}
+	if(key = 50){
+		let difficulty = 2;
+	}
+	if(key = 51){
+		let difficulty = 3;
+	}
+
+	do Sys.wait(200);
+
+	do tempString.dispose();
+	
+	let game = Game.new(difficulty);
+
+	while(~game.quitGame()){
+		do game.run();
+	}
+	return;
+  }
+
+}
